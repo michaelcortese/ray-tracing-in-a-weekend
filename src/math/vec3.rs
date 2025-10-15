@@ -1,4 +1,4 @@
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy)]
 pub struct Vec3 {
     pub e: [f64; 3],
 }
@@ -53,6 +53,7 @@ impl Vec3 {
         self * (1.0 / self.length())
     }
 }
+pub type Point3 = Vec3;
 use std::{
     array,
     ops::{Add, Mul, Sub},
