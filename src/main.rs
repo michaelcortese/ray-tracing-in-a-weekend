@@ -1,3 +1,5 @@
+use ray_tracing_in_a_weekend::{Color, write_color};
+
 use std::io::Write;
 
 fn main() {
@@ -11,17 +13,12 @@ fn main() {
         std::io::stderr().flush().unwrap();
         // std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
         for i in 0..image_width {
-            let r: f64 = i as f64 / (image_width - 1) as f64;
-            let g: f64 = j as f64 / (image_height - 1) as f64;
-            let b: f64 = 0.0;
-
-            // clamp to range 0-255
-            let ir = (255.999 * r) as u32;
-            let ig = (255.999 * g) as u32;
-            let ib = (255.999 * b) as u32;
-
-            // output
-            println!("{} {} {}", ir, ig, ib);
+            let pixel_color: Color = Color::from(
+                i as f64 / (image_width - 1) as f64,
+                j as f64 / (image_height - 1) as f64,
+                0.0,
+            );
+            write_color(pixel_color);
         }
     }
     eprint!("\rDone!                   \n");
